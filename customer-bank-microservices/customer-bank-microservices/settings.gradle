@@ -1,0 +1,16 @@
+rootProject.name = 'customer-bank-microservices'
+
+include ':app-service-customer'
+findProject(':app-service-customer').projectDir = file('./applications/app-service-customer')
+
+include ':usecases'
+findProject(':usecases').projectDir = file('./domain/usecases')
+
+include ':model'
+findProject(':model').projectDir = file('./domain/model')
+
+include ':mysql-repository'
+findProject(':mysql-repository').projectDir = file('./infrastructure/driven-adapters/mysql-repository')
+
+include':web';
+findProject(':web').projectDir = file('./infrastructure/entry-points/web')
