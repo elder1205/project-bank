@@ -1,0 +1,10 @@
+rootProject.name = 'accountMovements-bank-microservices'
+
+include ':app-service-account-movements'
+findProject(':app-service-account-movements').projectDir = file('./applications/app-service-account-movements')
+
+include ':usecases'
+findProject(':usecases').projectDir = file('./domain/usecases')
+
+include ':model'
+findProject(':model').projectDir = file('./domain/model')
