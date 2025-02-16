@@ -11,7 +11,11 @@ public class GetAccountByIdUseCase {
     }
 
     public Account execute(String id){
-       return  accountRepository.findAccountById(id);
+        Account account =  accountRepository.findAccountById(id);
+        if(account == null){
+            throw new RuntimeException("There is no account with id: "+id);
+        }
+       return  account;
     }
 
 }

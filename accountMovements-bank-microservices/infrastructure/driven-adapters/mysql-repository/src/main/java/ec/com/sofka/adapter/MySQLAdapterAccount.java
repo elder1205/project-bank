@@ -51,4 +51,9 @@ public class MySQLAdapterAccount  implements AccountRepository {
     public Void deleteAccount(String id) {
         return null;
     }
+
+    @Override
+    public Account findAccountByAccountNumber(String numberAcc) {
+        return AccountMapper.toModel(accountRepository.findByAccountNumber(numberAcc));
+    }
 }

@@ -8,10 +8,12 @@ import ec.com.sofka.mapper.AccountMapper;
 import ec.com.sofka.usecases.accounts.CreateAccountUseCase;
 import ec.com.sofka.usecases.accounts.GetAccountByIdUseCase;
 import ec.com.sofka.usecases.accounts.GetAllAccountsUseCase;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Component
 public class AccountHandler {
     private final GetAllAccountsUseCase getAllAccountsUseCase;
     private final GetAccountByIdUseCase getAccountByIdUseCase;

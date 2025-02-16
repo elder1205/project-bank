@@ -15,6 +15,7 @@ public class MovementMapper {
         movement.setAmount(dto.getAmount());
         movement.setMovementDescription(dto.getMovementDescription());
         movement.setIdAccount(dto.getIdAccount());
+       // movement.getAccount().setIdAccount(dto.getIdAccount());
         return movement;
     }
 

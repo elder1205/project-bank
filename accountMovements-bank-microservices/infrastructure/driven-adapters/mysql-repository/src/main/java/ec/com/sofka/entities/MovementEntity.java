@@ -6,6 +6,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+
 @Entity
 public class MovementEntity {
     @Id
@@ -19,7 +20,7 @@ public class MovementEntity {
     private BigDecimal balance;
     private String movementDescription;
     @ManyToOne
-    @JoinColumn(name = "id_account", referencedColumnName = "id_account", nullable = false)
+    @JoinColumn(name = "id_account", referencedColumnName = "id_account")
     private AccountEntity account;
 
     public MovementEntity() {

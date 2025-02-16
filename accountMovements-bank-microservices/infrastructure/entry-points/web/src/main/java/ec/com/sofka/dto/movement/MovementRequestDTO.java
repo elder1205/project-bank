@@ -1,13 +1,14 @@
 package ec.com.sofka.dto.movement;
-
-import ec.com.sofka.entities.AccountEntity;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
 
 public class MovementRequestDTO {
     private String idMovement;
     //private LocalDateTime date;
+    @NotBlank(message = "Type movement cannot be empty")
+    @Pattern(regexp = "Deposit|Withdrawal", message = "Type account must be Deposit, Withdrawal")
     private String movementType;
     private BigDecimal amount;
     //private BigDecimal balance;
@@ -17,8 +18,7 @@ public class MovementRequestDTO {
     public MovementRequestDTO() {
     }
 
-    public MovementRequestDTO(String idMovement, String movementType, BigDecimal amount, String movementDescription, String idAccount) {
-        this.idMovement = idMovement;
+    public MovementRequestDTO( String movementType, BigDecimal amount, String movementDescription, String idAccount) {
         this.movementType = movementType;
         this.amount = amount;
         this.movementDescription = movementDescription;

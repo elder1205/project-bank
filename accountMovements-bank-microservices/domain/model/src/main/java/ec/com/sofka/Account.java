@@ -15,6 +15,10 @@ public class Account {
     public Account() {
     }
 
+    public Account(String idAccount) {
+        this.idAccount = idAccount;
+    }
+
     public Account(String idAccount, String accountNumber, String typeAccount, BigDecimal openingBalance, String state, String idClient, List<Movement> movements) {
         this.idAccount = idAccount;
         this.accountNumber = accountNumber;

@@ -13,7 +13,11 @@ public class GetAllCustomersUseCase {
     }
 
     public List<Customer> execute(){
-        return customerRepository.listTransaction();
+        List<Customer> customers = customerRepository.listCustomer();
+        if(customers.isEmpty()){
+            throw new RuntimeException("No customers found");
+        }
+        return customers;
     }
 
 }

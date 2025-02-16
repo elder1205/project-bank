@@ -4,6 +4,9 @@ import ec.com.sofka.Account;
 import ec.com.sofka.Movement;
 import ec.com.sofka.gateway.AccountRepository;
 import ec.com.sofka.gateway.MovementRepository;
+import ec.com.sofka.usecases.accounts.CreateAccountUseCase;
+import ec.com.sofka.usecases.accounts.UpdateAccountUseCase;
+import jakarta.transaction.Transactional;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -11,15 +14,21 @@ import java.time.LocalDateTime;
 public class CreateMovementUseCase {
     private final MovementRepository movementRepository;
     private final AccountRepository accountRepository;
+    private final UpdateAccountUseCase updateAccountUseCase;
 
 
-    public CreateMovementUseCase(MovementRepository movementRepository, AccountRepository accountRepository) {
+
+
+    public CreateMovementUseCase(MovementRepository movementRepository, AccountRepository accountRepository, UpdateAccountUseCase updateAccountUseCase) {
         this.movementRepository = movementRepository;
         this.accountRepository = accountRepository;
+
+        this.updateAccountUseCase = updateAccountUseCase;
     }
 
+    @Transactional
     public Movement execute(Movement movement){
-        Account accountUpdate = accountRepository.findAccountById(movement.getAccount().getIdAccount());
+        Account accountUpdate = accountRepository.findAccountById(movement.getIdAccount());
         if(accountUpdate== null){
              throw new RuntimeException("The account does not exist");
         }
@@ -41,7 +50,8 @@ public class CreateMovementUseCase {
       }
 
       accountUpdate.setOpeningBalance(newBalance);
-      //accountUpdate.setOpeningBalance(movemetNew.get);
+        updateAccountUseCase.execute(accountUpdate);
+
       return movementNew;
     }
 }

@@ -34,4 +34,12 @@ public class CustomerController {
                 ResponseEntity.status(200).body(response);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<CustomerResponseDTO> findById(@PathVariable String id){
+        var response = customerHandler.findAccountById(id);
+        return response != null?
+                ResponseEntity.status(200).body(response):
+                ResponseEntity.status(404).build();
+    }
+
 }

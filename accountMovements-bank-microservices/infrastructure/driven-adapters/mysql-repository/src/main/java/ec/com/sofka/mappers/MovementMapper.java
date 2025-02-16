@@ -1,6 +1,7 @@
 package ec.com.sofka.mappers;
 
 import ec.com.sofka.Movement;
+import ec.com.sofka.entities.AccountEntity;
 import ec.com.sofka.entities.MovementEntity;
 
 public class MovementMapper {
@@ -16,12 +17,13 @@ public class MovementMapper {
         movement.setAmount(movementEntity.getAmount());
         movement.setBalance(movementEntity.getBalance());
         movement.setMovementDescription(movement.getMovementDescription());
+      //  movement.getAccount().setIdAccount(movement.getIdAccount());
         return movement;
 
 
     }
 
-    private static MovementEntity toEntity(Movement movement) {
+    public static MovementEntity toEntity(Movement movement) {
         if (movement == null) {
             return null;
         }
@@ -32,6 +34,7 @@ public class MovementMapper {
         movementEntity.setAmount(movement.getAmount());
         movementEntity.setBalance(movement.getBalance());
         movementEntity.setMovementDescription(movement.getMovementDescription());
+       movementEntity.setAccount(new AccountEntity(movement.getIdAccount()));
         return movementEntity;
     }
 }

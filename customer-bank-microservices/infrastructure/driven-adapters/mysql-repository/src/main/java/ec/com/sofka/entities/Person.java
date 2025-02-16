@@ -16,6 +16,10 @@ public abstract class Person {
     public Person() {
     }
 
+    public Person(String idPerson) {
+        this.idPerson = idPerson;
+    }
+
     public Person(String idPerson, String name, String gender, int age, String identification, String address, String phone) {
         this.idPerson = idPerson;
         this.name = name;

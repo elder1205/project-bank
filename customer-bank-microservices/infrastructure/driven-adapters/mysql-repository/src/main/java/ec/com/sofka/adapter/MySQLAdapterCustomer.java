@@ -31,7 +31,7 @@ public class MySQLAdapterCustomer implements CustomerRepository {
     }
 
     @Override
-    public List<Customer> listTransaction() {
+    public List<Customer> listCustomer() {
         List<CustomerEntity> customerEntities = repository.findAll();
         return customerEntities.stream()
                 .map(CustomerMapper::toModel)
@@ -39,8 +39,29 @@ public class MySQLAdapterCustomer implements CustomerRepository {
     }
 
     @Override
+    public Customer findAccountById(String id) {
+        CustomerEntity customerEntity = repository.findById(id).orElse(null);
+        if(customerEntity == null){
+            throw new RuntimeException("Customer with id : "+id+" not found");
+        }
+        return CustomerMapper.toModel(customerEntity);
+    }
+
+    @Override
     public Void deleteCustomer(String id) {
         repository.deleteById(id);
         return null;
     }
+
+    @Override
+    public Customer findCustomerByIdentification(String identification) {
+        CustomerEntity customerEntity =repository.findByIdentification(identification);
+        //System.out.println("Custoemer result "+customerEntity);
+        if(customerEntity != null){
+            return CustomerMapper.toModel(customerEntity);
+        }
+       // return CustomerMapper.toModel(repository.findByIdentification(identification));
+        return null;
+    }
+
 }

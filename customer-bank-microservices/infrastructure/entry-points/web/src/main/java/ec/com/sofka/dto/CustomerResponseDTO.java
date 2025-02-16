@@ -5,7 +5,6 @@ import jakarta.validation.constraints.*;
 public class CustomerResponseDTO {
 
     private String idCustomer;
-
     private String state;
     private String name;
     private String gender;

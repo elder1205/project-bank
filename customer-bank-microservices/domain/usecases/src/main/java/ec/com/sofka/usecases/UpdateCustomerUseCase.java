@@ -11,6 +11,5 @@ public class UpdateCustomerUseCase {
     }
     public Customer execute(Customer customer){
         return customerRepository.updateCustomer(customer);
-
     }
 }

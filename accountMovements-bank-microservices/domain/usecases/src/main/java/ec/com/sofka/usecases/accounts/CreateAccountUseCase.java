@@ -11,7 +11,9 @@ public class CreateAccountUseCase {
     }
 
     public Account execute(Account account){
+    if(accountRepository.findAccountByAccountNumber(account.getAccountNumber()) ==  null){
         return accountRepository.saveAccount(account);
+    };
+        throw new RuntimeException("Number account already exists");
     }
-
 }

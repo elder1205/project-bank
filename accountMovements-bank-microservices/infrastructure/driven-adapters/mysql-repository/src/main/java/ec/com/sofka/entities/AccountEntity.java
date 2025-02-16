@@ -19,13 +19,17 @@ public class AccountEntity {
     private BigDecimal openingBalance;
     private String state;
     private String idClient;
-    @OneToMany(mappedBy = "account",cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Movement> movements;
+    @OneToMany(mappedBy = "account",cascade = CascadeType.ALL)
+    private List<MovementEntity> movements;
 
     public AccountEntity() {
     }
 
-    public AccountEntity(String idAccount, String accountNumber, String typeAccount, BigDecimal openingBalance, String state, String idClient, List<Movement> movements) {
+    public AccountEntity(String idAccount) {
+        this.idAccount = idAccount;
+    }
+
+    public AccountEntity(String idAccount, String accountNumber, String typeAccount, BigDecimal openingBalance, String state, String idClient, List<MovementEntity> movements) {
         this.idAccount = idAccount;
         this.accountNumber = accountNumber;
         this.typeAccount = typeAccount;
@@ -83,11 +87,11 @@ public class AccountEntity {
         this.idClient = idClient;
     }
 
-    public List<Movement> getMovements() {
+    public List<MovementEntity> getMovements() {
         return movements;
     }
 
-    public void setMovements(List<Movement> movements) {
+    public void setMovements(List<MovementEntity> movements) {
         this.movements = movements;
     }
 }

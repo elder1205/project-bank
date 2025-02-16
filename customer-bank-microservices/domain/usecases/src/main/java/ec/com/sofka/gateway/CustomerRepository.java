@@ -7,6 +7,8 @@ import java.util.List;
 public interface CustomerRepository {
     Customer saveCustomer(Customer customer);
     Customer updateCustomer(Customer customer);
-    List<Customer> listTransaction();
+    List<Customer> listCustomer();
+    Customer findAccountById(String id);
     Void deleteCustomer(String id);
+    Customer findCustomerByIdentification(String identification);
 }
