@@ -5,4 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface IAccountRepository  extends JpaRepository<AccountEntity, String> {
     AccountEntity findByAccountNumber(String  accountNumber);
+    AccountEntity findByIdClient(String idClient);
 }

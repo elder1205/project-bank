@@ -56,4 +56,13 @@ public class MySQLAdapterAccount  implements AccountRepository {
     public Account findAccountByAccountNumber(String numberAcc) {
         return AccountMapper.toModel(accountRepository.findByAccountNumber(numberAcc));
     }
+
+    @Override
+    public Account findByIdClient(String idClient) {
+        AccountEntity accountEntity = accountRepository.findByIdClient(idClient);
+        if(accountEntity == null){
+            throw new RuntimeException("Account not found");
+        }
+        return AccountMapper.toModel(accountEntity);
+    }
 }

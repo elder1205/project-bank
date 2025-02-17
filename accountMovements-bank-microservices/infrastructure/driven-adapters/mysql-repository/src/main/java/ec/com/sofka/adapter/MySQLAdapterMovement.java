@@ -8,6 +8,8 @@ import ec.com.sofka.gateway.MovementRepository;
 import ec.com.sofka.mappers.MovementMapper;
 import ec.com.sofka.repository.IMovementRepository;
 import org.springframework.stereotype.Repository;
+
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -51,4 +53,16 @@ public class MySQLAdapterMovement implements MovementRepository {
     public Void deleteMovement(String id) {
         return null;
     }
+
+    @Override
+    public List<Movement> findMovementsByDateRangeAndCustomer(LocalDateTime startDate, LocalDateTime endDate, String idAccount) {
+        List<MovementEntity> movementList = movementRepository.findMovementsByDateRangeAndCustomer(startDate,endDate,idAccount);
+        return movementList
+                .stream()
+                .map(MovementMapper::toModel)
+                .collect(Collectors.toList());
+       // return List.of();
+    }
+
+
 }

@@ -8,4 +8,7 @@ dependencies {
     implementation project(':usecases')
     implementation project(':mysql-repository')
    implementation project(':web')
+    implementation project (':rabbit-info-bus')
+
+    implementation 'org.springframework.boot:spring-boot-starter-amqp'
 }

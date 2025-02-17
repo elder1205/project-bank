@@ -1,5 +1,6 @@
 package ec.com.sofka.controller;
 
+import ec.com.sofka.dto.AccountStatementResponseDTO;
 import ec.com.sofka.dto.account.AccountRequestDTO;
 import ec.com.sofka.dto.account.AccountResponseDTO;
 import ec.com.sofka.handler.AccountHandler;
@@ -40,5 +41,12 @@ public class AccountController {
             ResponseEntity.status(200).body(response):
             ResponseEntity.status(404).build();
 }
+    @GetMapping("/reports")
+    public ResponseEntity<List<AccountStatementResponseDTO>> getReports(
+            @RequestParam("date") String dateRange,
+            @RequestParam("identification") String customerIdentification
+    ) {
+        return ResponseEntity.ok(accountHandler.getAccountStatements(dateRange, customerIdentification));
+    }
 
 }

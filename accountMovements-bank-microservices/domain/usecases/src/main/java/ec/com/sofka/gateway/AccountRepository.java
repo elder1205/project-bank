@@ -11,5 +11,6 @@ public interface AccountRepository {
     Account findAccountById(String id);
     Void deleteAccount(String id);
     Account findAccountByAccountNumber(String accountNumber);
+    Account findByIdClient(String idClient);
 
 }
