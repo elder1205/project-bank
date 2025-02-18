@@ -1,6 +1,5 @@
 package ec.com.sofka.entities;
 
-import ec.com.sofka.Account;
 import jakarta.persistence.*;
 import org.springframework.data.annotation.LastModifiedDate;
 

@@ -10,7 +10,7 @@ public class UpdateAccountUseCase {
         this.accountRepository = accountRepository;
     }
 
-    public Account execute(Account account){
+    public Account execute(Account account) {
         return accountRepository.updateAccount(account);
     }
 }

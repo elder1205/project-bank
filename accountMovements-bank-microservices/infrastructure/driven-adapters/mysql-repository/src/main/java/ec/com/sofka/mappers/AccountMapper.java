@@ -1,5 +1,4 @@
 package ec.com.sofka.mappers;
-
 import ec.com.sofka.Account;
 import ec.com.sofka.entities.AccountEntity;
 
@@ -15,9 +14,6 @@ public class AccountMapper {
         account.setOpeningBalance(accountEntity.getOpeningBalance());
         account.setState(accountEntity.getState());
         account.setIdClient(accountEntity.getIdClient());
-        //account.setMovements(accountEntity.getMovements().stream()
-        //        .map(AccountMapper::toModel)
-       //         .collect(Collectors.toList()));
         return account;
 
     }
@@ -33,9 +29,6 @@ public class AccountMapper {
         accountEntity.setOpeningBalance(account.getOpeningBalance());
         accountEntity.setState(account.getState());
         accountEntity.setIdClient(account.getIdClient());
-        //accountEntity.setMovements(account.getMovements().stream()
-        //        .map(AccountMapper::toEntity)
-        //        .collect(Collectors.toList()));
         return accountEntity;
 
     }

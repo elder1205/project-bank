@@ -1,7 +1,5 @@
 package ec.com.sofka.entities;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import ec.com.sofka.Movement;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
@@ -14,12 +12,12 @@ public class AccountEntity {
     @Column(name = "id_account")
     private String idAccount;
     @Column(nullable = false, unique = true)
-    private  String accountNumber;
+    private String accountNumber;
     private String typeAccount;
     private BigDecimal openingBalance;
     private String state;
     private String idClient;
-    @OneToMany(mappedBy = "account",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "account", cascade = CascadeType.ALL)
     private List<MovementEntity> movements;
 
     public AccountEntity() {

@@ -14,9 +14,9 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class GetAccountStatementUseCase {
-private final AccountRepository accountRepository;
-private final MovementRepository movementRepository;
-private final IBusMessage busMessage;
+    private final AccountRepository accountRepository;
+    private final MovementRepository movementRepository;
+    private final IBusMessage busMessage;
 
     public GetAccountStatementUseCase(AccountRepository accountRepository, MovementRepository movementRepository, IBusMessage busMessage) {
         this.accountRepository = accountRepository;
@@ -24,16 +24,16 @@ private final IBusMessage busMessage;
         this.busMessage = busMessage;
     }
 
-    public List<AccountStatementInfo> execute(String dateRange, String identification){
+    public List<AccountStatementInfo> execute(String dateRange, String identification) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        String[] dates= dateRange.split("-");
-        if(dates.length != 2){
+        String[] dates = dateRange.split("-");
+        if (dates.length != 2) {
             throw new RuntimeException("Invalid date range format. Use dd/MM/yyyy-dd/MM/yyyy");
         }
         LocalDate startDate = LocalDate.parse(dates[0], formatter);
-        LocalDate endDate = LocalDate.parse(dates[1],formatter);
+        LocalDate endDate = LocalDate.parse(dates[1], formatter);
         LocalDateTime startDateTime = startDate.atStartOfDay();
-        LocalDateTime endDatetime = endDate.atTime(23,59,59);
+        LocalDateTime endDatetime = endDate.atTime(23, 59, 59);
         Object response = busMessage.sendMessage(new CustomerInfoRequestRecord(identification, true));
         CustomerInfoRecord info;
         if (response == "") {
@@ -42,7 +42,7 @@ private final IBusMessage busMessage;
             info = (CustomerInfoRecord) response;
         }
         Account account = accountRepository.findByIdClient(info.customerId());
-        return movementRepository.findMovementsByDateRangeAndCustomer(startDateTime,endDatetime,account.getIdAccount())
+        return movementRepository.findMovementsByDateRangeAndCustomer(startDateTime, endDatetime, account.getIdAccount())
                 .stream()
                 .map(movement -> new AccountStatementInfo(
                         account.getAccountNumber(),
@@ -56,7 +56,7 @@ private final IBusMessage busMessage;
                 ))
                 .toList();
 
-      //  return List.of();
+        //  return List.of();
 
     }
 }

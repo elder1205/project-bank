@@ -19,26 +19,26 @@ public class CustomerController {
     }
 
     @PostMapping
-    public ResponseEntity<CustomerResponseDTO> createCustomer(@RequestBody @Valid CustomerRequestDTO customerRequestDTO){
+    public ResponseEntity<CustomerResponseDTO> createCustomer(@RequestBody @Valid CustomerRequestDTO customerRequestDTO) {
         var response = customerHandler.save(customerRequestDTO);
-        return response != null?
-                ResponseEntity.status(201).body(response):
+        return response != null ?
+                ResponseEntity.status(201).body(response) :
                 ResponseEntity.status(500).build();
     }
 
     @GetMapping
-    public ResponseEntity<List<CustomerResponseDTO>> getAllCustomers(){
+    public ResponseEntity<List<CustomerResponseDTO>> getAllCustomers() {
         var response = customerHandler.findAll();
-        return response.isEmpty()?
-                ResponseEntity.status(204).build():
+        return response.isEmpty() ?
+                ResponseEntity.status(204).build() :
                 ResponseEntity.status(200).body(response);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<CustomerResponseDTO> findById(@PathVariable String id){
+    public ResponseEntity<CustomerResponseDTO> findById(@PathVariable String id) {
         var response = customerHandler.findAccountById(id);
-        return response != null?
-                ResponseEntity.status(200).body(response):
+        return response != null ?
+                ResponseEntity.status(200).body(response) :
                 ResponseEntity.status(404).build();
     }
 

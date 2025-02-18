@@ -39,7 +39,7 @@ public class CustomerHandler {
         return CustomerMapper.toResponseDTO(savedCustomer);
     }
 
-    public CustomerResponseDTO findAccountById(String id){
+    public CustomerResponseDTO findAccountById(String id) {
         return CustomerMapper.toResponseDTO(getCustomerByIdUseCase.execute(id));
     }
 

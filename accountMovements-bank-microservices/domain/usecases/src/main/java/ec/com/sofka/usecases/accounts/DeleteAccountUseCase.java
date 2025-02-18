@@ -9,7 +9,7 @@ public class DeleteAccountUseCase {
         this.accountRepository = accountRepository;
     }
 
-    public void execute(String id){
+    public void execute(String id) {
         accountRepository.deleteAccount(id);
     }
 

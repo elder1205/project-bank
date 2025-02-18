@@ -8,7 +8,7 @@ public class AccountRequestDTO {
     private String idAccount;
     @NotNull(message = "The accountNumber field must not be null")
     @Size(min = 10, max = 10, message = "The accountNumber field must have exactly 10 digits")
-    private  String accountNumber;
+    private String accountNumber;
     @NotBlank(message = "Type account cannot be empty")
     @Pattern(regexp = "Saving|Current", message = "Type account must be Saving, Current")
     private String typeAccount;
@@ -21,7 +21,7 @@ public class AccountRequestDTO {
     public AccountRequestDTO() {
     }
 
-    public AccountRequestDTO( String accountNumber, String typeAccount, BigDecimal openingBalance, String state, String idClient) {
+    public AccountRequestDTO(String accountNumber, String typeAccount, BigDecimal openingBalance, String state, String idClient) {
         this.accountNumber = accountNumber;
         this.typeAccount = typeAccount;
         this.openingBalance = openingBalance;

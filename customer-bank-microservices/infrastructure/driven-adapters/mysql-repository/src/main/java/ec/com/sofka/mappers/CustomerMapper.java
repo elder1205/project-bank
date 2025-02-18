@@ -4,7 +4,7 @@ import ec.com.sofka.Customer;
 import ec.com.sofka.entities.CustomerEntity;
 
 public class CustomerMapper {
-    public static Customer toModel(CustomerEntity customerEntity){
+    public static Customer toModel(CustomerEntity customerEntity) {
         Customer customer = new Customer();
         customer.setIdCustomer(customerEntity.getIdCustomer());
         customer.setPassword(customerEntity.getPassword());

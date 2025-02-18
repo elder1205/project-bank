@@ -1,4 +1,5 @@
 package ec.com.sofka.dto.movement;
+
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 
@@ -18,7 +19,7 @@ public class MovementRequestDTO {
     public MovementRequestDTO() {
     }
 
-    public MovementRequestDTO( String movementType, BigDecimal amount, String movementDescription, String idAccount) {
+    public MovementRequestDTO(String movementType, BigDecimal amount, String movementDescription, String idAccount) {
         this.movementType = movementType;
         this.amount = amount;
         this.movementDescription = movementDescription;

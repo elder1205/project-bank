@@ -1,4 +1,5 @@
 package ec.com.sofka;
+
 import ec.com.sofka.data.CustomerInfoRecord;
 import ec.com.sofka.data.CustomerInfoRequestRecord;
 import ec.com.sofka.gateway.IBusMessage;
@@ -11,7 +12,7 @@ import java.util.LinkedHashMap;
 
 @Service
 public class BusAdapter implements IBusMessage {
-    private  final RabbitTemplate rabbitTemplate;
+    private final RabbitTemplate rabbitTemplate;
 
     @Value("${app.exchange_name}")
     private String exchangeName;
@@ -26,12 +27,12 @@ public class BusAdapter implements IBusMessage {
     @Override
     public Object sendMessage(CustomerInfoRequestRecord request) {
         Object response = rabbitTemplate.convertSendAndReceive(
-               exchangeName,
-               routingKey,
+                exchangeName,
+                routingKey,
                 request
         );
 
-        System.out.println(response);
+       // System.out.println(response);
 
         if (response != null) {
             System.out.println(response.getClass().getName());

@@ -11,13 +11,9 @@ public abstract class Person {
     private int age;
     private String identification;
     private String address;
-    private  String  phone;
+    private String phone;
 
     public Person() {
-    }
-
-    public Person(String idPerson) {
-        this.idPerson = idPerson;
     }
 
     public Person(String idPerson, String name, String gender, int age, String identification, String address, String phone) {

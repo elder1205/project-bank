@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Repository
-public class MySQLAdapterAccount  implements AccountRepository {
+public class MySQLAdapterAccount implements AccountRepository {
     private final IAccountRepository accountRepository;
 
     public MySQLAdapterAccount(IAccountRepository accountRepository) {
@@ -41,7 +41,7 @@ public class MySQLAdapterAccount  implements AccountRepository {
     @Override
     public Account findAccountById(String id) {
         AccountEntity accountEntity = accountRepository.findById(id).orElse(null);
-        if(accountEntity == null){
+        if (accountEntity == null) {
             throw new RuntimeException("Account not found");
         }
         return AccountMapper.toModel(accountEntity);
@@ -60,7 +60,7 @@ public class MySQLAdapterAccount  implements AccountRepository {
     @Override
     public Account findByIdClient(String idClient) {
         AccountEntity accountEntity = accountRepository.findByIdClient(idClient);
-        if(accountEntity == null){
+        if (accountEntity == null) {
             throw new RuntimeException("Account not found");
         }
         return AccountMapper.toModel(accountEntity);

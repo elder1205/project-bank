@@ -20,8 +20,8 @@ public class MySQLAdapterCustomer implements CustomerRepository {
 
     @Override
     public Customer saveCustomer(Customer customer) {
-          CustomerEntity customerEntity = repository.save(CustomerMapper.toEntity(customer));
-          return CustomerMapper.toModel(customerEntity);
+        CustomerEntity customerEntity = repository.save(CustomerMapper.toEntity(customer));
+        return CustomerMapper.toModel(customerEntity);
     }
 
     @Override
@@ -41,8 +41,8 @@ public class MySQLAdapterCustomer implements CustomerRepository {
     @Override
     public Customer findAccountById(String id) {
         CustomerEntity customerEntity = repository.findById(id).orElse(null);
-        if(customerEntity == null){
-            throw new RuntimeException("Customer with id : "+id+" not found");
+        if (customerEntity == null) {
+            throw new RuntimeException("Customer with id : " + id + " not found");
         }
         return CustomerMapper.toModel(customerEntity);
     }
@@ -55,12 +55,10 @@ public class MySQLAdapterCustomer implements CustomerRepository {
 
     @Override
     public Customer findCustomerByIdentification(String identification) {
-        CustomerEntity customerEntity =repository.findByIdentification(identification);
-        //System.out.println("Custoemer result "+customerEntity);
-        if(customerEntity != null){
+        CustomerEntity customerEntity = repository.findByIdentification(identification);
+        if (customerEntity != null) {
             return CustomerMapper.toModel(customerEntity);
         }
-       // return CustomerMapper.toModel(repository.findByIdentification(identification));
         return null;
     }
 

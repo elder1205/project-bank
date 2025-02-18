@@ -1,7 +1,5 @@
 package ec.com.sofka.dto;
 
-import jakarta.validation.constraints.*;
-
 public class CustomerResponseDTO {
 
     private String idCustomer;
@@ -16,7 +14,7 @@ public class CustomerResponseDTO {
     public CustomerResponseDTO() {
     }
 
-    public CustomerResponseDTO(String idCustomer,  String state, String name, String gender, int age, String identification, String address, String phone) {
+    public CustomerResponseDTO(String idCustomer, String state, String name, String gender, int age, String identification, String address, String phone) {
         this.idCustomer = idCustomer;
 
         this.state = state;

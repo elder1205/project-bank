@@ -1,0 +1,268 @@
+{
+	"info": {
+		"_postman_id": "a7ecab1d-4550-41a6-8713-2afa06839380",
+		"name": "BANKCHALLENGER",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17931610"
+	},
+	"item": [
+		{
+			"name": "ACCOUNT",
+			"item": [
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"accountNumber\":\"2901248788\",\r\n    \"typeAccount\":\"Saving\",\r\n    \"openingBalance\":50000,\r\n    \"state\":\"true\",\r\n    \"idClient\":\"'b70d2abf-8578-4687-ae80-a5ca25bbb761'\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/account",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"account"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/account",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"account"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get By ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/account/fad52d5b-14bb-4305-9d08-a6953aca15a",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"account",
+								"fad52d5b-14bb-4305-9d08-a6953aca15a"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Report",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/account/reports?date=15/02/2025-15/02/2025&identification=b70d2abf-8578-4687-ae80-a5ca25bbb761",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"account",
+								"reports"
+							],
+							"query": [
+								{
+									"key": "date",
+									"value": "15/02/2025-15/02/2025"
+								},
+								{
+									"key": "identification",
+									"value": "b70d2abf-8578-4687-ae80-a5ca25bbb761"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "MOVEMENTS",
+			"item": [
+				{
+					"name": "Get All",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/movement",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"movement"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get By Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/movement/31e5e0cb-0bb6-4c0c-bcfa-4ab6778bb9b8",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"movement",
+								"31e5e0cb-0bb6-4c0c-bcfa-4ab6778bb9b8"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"movementType\":\"Withdrawal\",\r\n    \"amount\":-1000,\r\n    \"movementDescription\":\"das\",\r\n    \"idAccount\":\"fad52d5b-14bb-4305-9d08-a6953aca15a3\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/movement",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"movement"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "CUSTOMER",
+			"item": [
+				{
+					"name": "Get All",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8082/api/customer",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"customer"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"state\": \"true\",\r\n    \"name\": \"Mario Manzino\",\r\n    \"gender\": \"Male\",\r\n    \"age\": 30,\r\n    \"identification\": \"1234567800\",\r\n    \"address\": \"Puebla\",\r\n    \"phone\": \"0987654321\",\r\n    \"password\":\"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8082/api/customer",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"customer"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get By Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8082/api/customer/235c1105-bf7d-47e6-a8de-181038d4f1fb",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"customer",
+								"235c1105-bf7d-47e6-a8de-181038d4f1fb"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

@@ -5,17 +5,15 @@ import ec.com.sofka.gateway.CustomerRepository;
 
 public class CreateCustomerUseCase {
     private final CustomerRepository customerRepository;
-    private final GetCustomerByIdentificationUseCase getCustomerByIdentificationUseCase;
 
-    public CreateCustomerUseCase(CustomerRepository customerRepository, GetCustomerByIdentificationUseCase getCustomerByIdentificationUseCase) {
+
+    public CreateCustomerUseCase(CustomerRepository customerRepository) {
         this.customerRepository = customerRepository;
-        this.getCustomerByIdentificationUseCase = getCustomerByIdentificationUseCase;
     }
 
-    public Customer execute(Customer customer){
-        System.out.println("Customer "+customer);
+    public Customer execute(Customer customer) {
 
-        if(customerRepository.findCustomerByIdentification(customer.getIdentification())== null){
+        if (customerRepository.findCustomerByIdentification(customer.getIdentification()) == null) {
             return customerRepository.saveCustomer(customer);
         }
         throw new RuntimeException("Identification already exists");

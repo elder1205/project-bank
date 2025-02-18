@@ -9,10 +9,11 @@ public class GetAccountByNumberAccUseCase {
     public GetAccountByNumberAccUseCase(AccountRepository accountRepository) {
         this.accountRepository = accountRepository;
     }
-    public Account execute(String numberAcc){
+
+    public Account execute(String numberAcc) {
         Account account = accountRepository.findAccountByAccountNumber(numberAcc);
-        if(account == null){
-            throw new RuntimeException("Account  with "+numberAcc +" not found");
+        if (account == null) {
+            throw new RuntimeException("Account  with " + numberAcc + " not found");
         }
         return account;
     }

@@ -12,9 +12,9 @@ public class GetAllAccountsUseCase {
         this.accountRepository = accountRepository;
     }
 
-    public List<Account> execute(){
+    public List<Account> execute() {
         List<Account> accounts = accountRepository.listAccount();
-        if(accounts.isEmpty()){
+        if (accounts.isEmpty()) {
             throw new RuntimeException("No accounts found");
         }
         return accounts;

@@ -12,9 +12,9 @@ public class GetAllCustomersUseCase {
         this.customerRepository = customerRepository;
     }
 
-    public List<Customer> execute(){
+    public List<Customer> execute() {
         List<Customer> customers = customerRepository.listCustomer();
-        if(customers.isEmpty()){
+        if (customers.isEmpty()) {
             throw new RuntimeException("No customers found");
         }
         return customers;

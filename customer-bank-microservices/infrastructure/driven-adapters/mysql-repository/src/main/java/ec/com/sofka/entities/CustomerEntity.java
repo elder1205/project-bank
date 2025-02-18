@@ -3,13 +3,13 @@ package ec.com.sofka.entities;
 import jakarta.persistence.*;
 
 @Entity
-public class CustomerEntity  extends Person {
+public class CustomerEntity extends Person {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "id_customer")
     private String idCustomer;
 
-    private String  password;
+    private String password;
     private String state;
 
     public CustomerEntity() {
@@ -28,7 +28,7 @@ public class CustomerEntity  extends Person {
         this.state = state;
     }
 
-   public CustomerEntity(String idPerson, String name, String gender, int age, String identification, String address, String phone) {
+    public CustomerEntity(String idPerson, String name, String gender, int age, String identification, String address, String phone) {
         super(idPerson, name, gender, age, identification, address, phone);
     }
 

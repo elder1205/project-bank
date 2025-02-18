@@ -9,10 +9,11 @@ public class GetCustomerByIdentificationUseCase {
     public GetCustomerByIdentificationUseCase(CustomerRepository customerRepository) {
         this.customerRepository = customerRepository;
     }
+
     public Customer execute(String identification) {
         Customer customer = customerRepository.findCustomerByIdentification(identification);
-        if(customer == null){
-            throw new RuntimeException("Customer  with "+identification +" not found");
+        if (customer == null) {
+            throw new RuntimeException("Customer  with " + identification + " not found");
         }
         return customer;
     }

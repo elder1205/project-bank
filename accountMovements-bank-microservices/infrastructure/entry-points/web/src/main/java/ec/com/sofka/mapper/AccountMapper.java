@@ -10,7 +10,7 @@ public class AccountMapper {
             return null;
         }
         Account account = new Account();
-       // account.setIdAccount(dto.getIdAccount());
+        account.setIdAccount(dto.getIdAccount());
         account.setAccountNumber(dto.getAccountNumber());
         account.setTypeAccount(dto.getTypeAccount());
         account.setOpeningBalance(dto.getOpeningBalance());

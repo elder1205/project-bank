@@ -1,7 +1,7 @@
 package ec.com.sofka.adapter;
+
 import ec.com.sofka.Account;
 import ec.com.sofka.Movement;
-import ec.com.sofka.entities.AccountEntity;
 import ec.com.sofka.entities.MovementEntity;
 import ec.com.sofka.gateway.MovementRepository;
 
@@ -42,7 +42,7 @@ public class MySQLAdapterMovement implements MovementRepository {
     @Override
     public Movement findMovementById(String id) {
         MovementEntity movementEntity = movementRepository.findById(id).orElse(null);
-        if(movementEntity == null){
+        if (movementEntity == null) {
             throw new RuntimeException("Movement not found");
         }
 
@@ -56,13 +56,10 @@ public class MySQLAdapterMovement implements MovementRepository {
 
     @Override
     public List<Movement> findMovementsByDateRangeAndCustomer(LocalDateTime startDate, LocalDateTime endDate, String idAccount) {
-        List<MovementEntity> movementList = movementRepository.findMovementsByDateRangeAndCustomer(startDate,endDate,idAccount);
+        List<MovementEntity> movementList = movementRepository.findMovementsByDateRangeAndCustomer(startDate, endDate, idAccount);
         return movementList
                 .stream()
                 .map(MovementMapper::toModel)
                 .collect(Collectors.toList());
-       // return List.of();
     }
-
-
 }

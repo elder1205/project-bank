@@ -14,20 +14,19 @@ public class CreateAccountUseCase {
         this.busMessage = busMessage;
     }
 
-    public Account execute(Account account, String identification){
-    if(accountRepository.findAccountByAccountNumber(account.getAccountNumber()) ==  null){
-        Object response;
-        String customerId;
-        response  = busMessage.sendMessage(new CustomerInfoRequestRecord(identification, false));
-        customerId = (String) response;
+    public Account execute(Account account, String identification) {
+        if (accountRepository.findAccountByAccountNumber(account.getAccountNumber()) == null) {
+            Object response;
+            String customerId;
+            response = busMessage.sendMessage(new CustomerInfoRequestRecord(identification, false));
+            customerId = (String) response;
 
-        if (customerId == null  ||  customerId.isEmpty()) {
-            throw new RuntimeException("Error creating account: Customer not Found");
+            if (customerId == null || customerId.isEmpty()) {
+                throw new RuntimeException("Error creating account: Customer not Found");
+            }
+            account.setIdClient(customerId);
+            return accountRepository.saveAccount(account);
         }
-        account.setIdClient(customerId);
-
-        return accountRepository.saveAccount(account);
-    };
         throw new RuntimeException("Number account already exists");
     }
 }

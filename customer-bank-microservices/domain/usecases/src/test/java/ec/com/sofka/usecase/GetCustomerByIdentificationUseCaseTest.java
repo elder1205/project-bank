@@ -1,6 +1,5 @@
 package ec.com.sofka.usecase;
 
-
 import ec.com.sofka.Customer;
 import ec.com.sofka.gateway.CustomerRepository;
 import ec.com.sofka.usecases.GetCustomerByIdentificationUseCase;

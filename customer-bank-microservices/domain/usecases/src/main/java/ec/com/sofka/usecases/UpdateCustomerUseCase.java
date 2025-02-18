@@ -9,7 +9,8 @@ public class UpdateCustomerUseCase {
     public UpdateCustomerUseCase(CustomerRepository customerRepository) {
         this.customerRepository = customerRepository;
     }
-    public Customer execute(Customer customer){
+
+    public Customer execute(Customer customer) {
         return customerRepository.updateCustomer(customer);
     }
 }

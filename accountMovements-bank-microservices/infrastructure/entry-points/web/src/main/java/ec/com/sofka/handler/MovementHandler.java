@@ -23,21 +23,22 @@ public class MovementHandler {
         this.getMovementByIdUseCase = getMovementByIdUseCase;
         this.createMovementUseCase = createMovementUseCase;
     }
-    public List<MovementResponseDTO> listMovements(){
+
+    public List<MovementResponseDTO> listMovements() {
         return getAllMovementsUseCase.execute()
                 .stream()
                 .map(MovementMapper::toResponseDTO)
                 .collect(Collectors.toList());
     }
 
-    public MovementResponseDTO save(MovementRequestDTO movementRequestDTO){
+    public MovementResponseDTO save(MovementRequestDTO movementRequestDTO) {
         Movement movement = MovementMapper.toModel(movementRequestDTO);
         return MovementMapper.toResponseDTO(createMovementUseCase.execute(movement));
     }
 
-    public MovementResponseDTO findById(String data){
+    public MovementResponseDTO findById(String data) {
         Movement movement = getMovementByIdUseCase.execute(data);
-        return movement != null ? MovementMapper.toResponseDTO(movement):null;
+        return movement != null ? MovementMapper.toResponseDTO(movement) : null;
     }
 
 }

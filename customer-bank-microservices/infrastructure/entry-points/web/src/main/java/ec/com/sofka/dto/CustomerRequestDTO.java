@@ -7,14 +7,15 @@ public class CustomerRequestDTO {
     private String idCustomer;
     @NotNull(message = "Password is required")
     @Size(min = 4, max = 25, message = "The password field must have a minimum of 4 characters and a maximum of 25 characters. ")
-    private String  password;
+    private String password;
 
     @NotNull(message = "State is required")
     @Size(min = 4, max = 4, message = "The status field must be 4 characters long.")
+    @Pattern(regexp = "true|false", message = "State must be true or false")
     private String state;
 
     @NotNull(message = "Name is required")
-    @Size( max = 20, message = "The name field must have a maximum of 20 characters.")
+    @Size(max = 20, message = "The name field must have a maximum of 20 characters.")
     private String name;
 
     @NotBlank(message = "Gender cannot be empty")
@@ -40,7 +41,7 @@ public class CustomerRequestDTO {
     public CustomerRequestDTO() {
     }
 
-    public CustomerRequestDTO( String password, String state, String name, String gender, int age, String identification, String address, String phone) {
+    public CustomerRequestDTO(String password, String state, String name, String gender, int age, String identification, String address, String phone) {
         this.password = password;
         this.state = state;
         this.name = name;

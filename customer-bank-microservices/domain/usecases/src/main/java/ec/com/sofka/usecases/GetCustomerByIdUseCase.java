@@ -9,10 +9,11 @@ public class GetCustomerByIdUseCase {
     public GetCustomerByIdUseCase(CustomerRepository customerRepository) {
         this.customerRepository = customerRepository;
     }
-    public Customer execute(String id){
+
+    public Customer execute(String id) {
         Customer customer = customerRepository.findAccountById(id);
-        if(customer == null){
-            throw new RuntimeException("There is no customer with id: "+id);
+        if (customer == null) {
+            throw new RuntimeException("There is no customer with id: " + id);
         }
         return customer;
     }

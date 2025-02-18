@@ -1,6 +1,6 @@
 package ec.com.sofka.usecases;
-import ec.com.sofka.gateway.CustomerRepository;
 
+import ec.com.sofka.gateway.CustomerRepository;
 
 public class DeleteCustomerUseCase {
     private final CustomerRepository customerRepository;
@@ -8,7 +8,8 @@ public class DeleteCustomerUseCase {
     public DeleteCustomerUseCase(CustomerRepository customerRepository) {
         this.customerRepository = customerRepository;
     }
-    public void execute(String id){
+
+    public void execute(String id) {
         this.customerRepository.deleteCustomer(id);
 
     }

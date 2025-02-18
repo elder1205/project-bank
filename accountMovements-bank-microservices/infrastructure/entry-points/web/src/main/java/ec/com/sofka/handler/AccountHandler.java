@@ -1,7 +1,6 @@
 package ec.com.sofka.handler;
 
 import ec.com.sofka.Account;
-
 import ec.com.sofka.dto.AccountStatementResponseDTO;
 import ec.com.sofka.dto.account.AccountRequestDTO;
 import ec.com.sofka.dto.account.AccountResponseDTO;
@@ -28,27 +27,28 @@ public class AccountHandler {
         this.createAccountUseCase = createAccountUseCase;
         this.getAccountStatementUseCase = getAccountStatementUseCase;
     }
-    public List<AccountResponseDTO> findAll(){
-            return getAllAccountsUseCase.execute()
-                    .stream()
-                    .map(AccountMapper::toResponseDTO)
-                    .collect(Collectors.toList());
+
+    public List<AccountResponseDTO> findAll() {
+        return getAllAccountsUseCase.execute()
+                .stream()
+                .map(AccountMapper::toResponseDTO)
+                .collect(Collectors.toList());
     }
 
-    public AccountResponseDTO getAccountById(String id){
+    public AccountResponseDTO getAccountById(String id) {
         return AccountMapper.toResponseDTO(getAccountByIdUseCase.execute(id));
     }
 
-    public AccountResponseDTO save(AccountRequestDTO accountRequestDTO){
+    public AccountResponseDTO save(AccountRequestDTO accountRequestDTO) {
         Account account = AccountMapper.toModel(accountRequestDTO);
-        return AccountMapper.toResponseDTO(createAccountUseCase.execute(account,account.getIdClient()));
+        return AccountMapper.toResponseDTO(createAccountUseCase.execute(account, account.getIdClient()));
     }
 
-    public List<AccountStatementResponseDTO> getAccountStatements(String dateRange, String customerIdentification){
-        return getAccountStatementUseCase.execute(dateRange,customerIdentification)
+    public List<AccountStatementResponseDTO> getAccountStatements(String dateRange, String customerIdentification) {
+        return getAccountStatementUseCase.execute(dateRange, customerIdentification)
                 .stream()
-                .map( data ->
-                        new  AccountStatementResponseDTO(
+                .map(data ->
+                        new AccountStatementResponseDTO(
                                 data.getAccountNumber(),
                                 data.getAccountInitialBalance(),
                                 data.getAccountAvailableBalance(),
