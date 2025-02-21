@@ -1,6 +1,7 @@
 package ec.com.sofka.usecases;
 
 import ec.com.sofka.Customer;
+import ec.com.sofka.exceptions.CustomerNotFound;
 import ec.com.sofka.gateway.CustomerRepository;
 
 public class GetCustomerByIdUseCase {
@@ -13,7 +14,7 @@ public class GetCustomerByIdUseCase {
     public Customer execute(String id) {
         Customer customer = customerRepository.findAccountById(id);
         if (customer == null) {
-            throw new RuntimeException("There is no customer with id: " + id);
+            throw new CustomerNotFound("There is no customer with id: " + id);
         }
         return customer;
     }

@@ -16,8 +16,8 @@ public class MovementMapper {
         movement.setMovementType(movementEntity.getMovementType());
         movement.setAmount(movementEntity.getAmount());
         movement.setBalance(movementEntity.getBalance());
-        movement.setMovementDescription(movement.getMovementDescription());
-      //  movement.getAccount().setIdAccount(movement.getIdAccount());
+        movement.setMovementDescription(movementEntity.getMovementDescription());
+        movement.setIdAccount(movementEntity.getAccount().getIdAccount());
         return movement;
 
     }

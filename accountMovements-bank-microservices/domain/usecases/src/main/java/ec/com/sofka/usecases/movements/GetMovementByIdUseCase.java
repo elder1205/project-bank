@@ -1,6 +1,7 @@
 package ec.com.sofka.usecases.movements;
 
 import ec.com.sofka.Movement;
+import ec.com.sofka.exceptions.MovementNotFoundException;
 import ec.com.sofka.gateway.MovementRepository;
 
 public class GetMovementByIdUseCase {
@@ -13,7 +14,7 @@ public class GetMovementByIdUseCase {
     public Movement execute(String id) {
         Movement movement = movementRepository.findMovementById(id);
         if (movement == null) {
-            throw new RuntimeException("There is no movement with id: " + id);
+            throw new MovementNotFoundException("There is no movement with id: " + id);
         }
         return movement;
     }

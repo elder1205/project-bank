@@ -1,6 +1,7 @@
 package ec.com.sofka.usecases.accounts;
 
 import ec.com.sofka.Account;
+import ec.com.sofka.exceptions.AccountNotFound;
 import ec.com.sofka.gateway.AccountRepository;
 
 import java.util.List;
@@ -15,7 +16,7 @@ public class GetAllAccountsUseCase {
     public List<Account> execute() {
         List<Account> accounts = accountRepository.listAccount();
         if (accounts.isEmpty()) {
-            throw new RuntimeException("No accounts found");
+            throw new AccountNotFound("No accounts found");
         }
         return accounts;
     }

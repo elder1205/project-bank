@@ -21,7 +21,7 @@ public class ICustomerRepositoryTest {
 
     @BeforeEach
     void setUp() {
-        customerRepository.deleteAll();
+       // customerRepository.deleteAll();
 
         CustomerEntity customer = new CustomerEntity();
         customer.setIdentification("123456789");

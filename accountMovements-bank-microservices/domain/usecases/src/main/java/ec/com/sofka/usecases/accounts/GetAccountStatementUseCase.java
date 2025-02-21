@@ -4,6 +4,8 @@ import ec.com.sofka.Account;
 import ec.com.sofka.data.AccountStatementInfo;
 import ec.com.sofka.data.CustomerInfoRecord;
 import ec.com.sofka.data.CustomerInfoRequestRecord;
+import ec.com.sofka.exceptions.CustomerNotFound;
+import ec.com.sofka.exceptions.DateRangeException;
 import ec.com.sofka.gateway.AccountRepository;
 import ec.com.sofka.gateway.IBusMessage;
 import ec.com.sofka.gateway.MovementRepository;
@@ -28,7 +30,7 @@ public class GetAccountStatementUseCase {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         String[] dates = dateRange.split("-");
         if (dates.length != 2) {
-            throw new RuntimeException("Invalid date range format. Use dd/MM/yyyy-dd/MM/yyyy");
+            throw new DateRangeException("Invalid date range format. Use dd/MM/yyyy-dd/MM/yyyy");
         }
         LocalDate startDate = LocalDate.parse(dates[0], formatter);
         LocalDate endDate = LocalDate.parse(dates[1], formatter);
@@ -37,7 +39,7 @@ public class GetAccountStatementUseCase {
         Object response = busMessage.sendMessage(new CustomerInfoRequestRecord(identification, true));
         CustomerInfoRecord info;
         if (response == "") {
-            throw new RuntimeException("Error creating account statement: Customer info not Found");
+            throw new CustomerNotFound("Error creating account statement: Customer info not Found");
         } else {
             info = (CustomerInfoRecord) response;
         }
@@ -55,8 +57,5 @@ public class GetAccountStatementUseCase {
                         movement.getDate()
                 ))
                 .toList();
-
-        //  return List.of();
-
     }
 }

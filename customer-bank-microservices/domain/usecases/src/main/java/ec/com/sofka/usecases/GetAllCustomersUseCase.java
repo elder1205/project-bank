@@ -1,6 +1,7 @@
 package ec.com.sofka.usecases;
 
 import ec.com.sofka.Customer;
+import ec.com.sofka.exceptions.CustomerNotFound;
 import ec.com.sofka.gateway.CustomerRepository;
 
 import java.util.List;
@@ -15,7 +16,7 @@ public class GetAllCustomersUseCase {
     public List<Customer> execute() {
         List<Customer> customers = customerRepository.listCustomer();
         if (customers.isEmpty()) {
-            throw new RuntimeException("No customers found");
+            throw new CustomerNotFound("No customers found");
         }
         return customers;
     }

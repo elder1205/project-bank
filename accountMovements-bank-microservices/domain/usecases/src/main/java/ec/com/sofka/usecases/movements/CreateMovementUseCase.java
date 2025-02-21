@@ -2,6 +2,9 @@ package ec.com.sofka.usecases.movements;
 
 import ec.com.sofka.Account;
 import ec.com.sofka.Movement;
+import ec.com.sofka.exceptions.AccountNotFound;
+import ec.com.sofka.exceptions.InsufficientBalanceException;
+import ec.com.sofka.exceptions.MovementException;
 import ec.com.sofka.gateway.AccountRepository;
 import ec.com.sofka.gateway.MovementRepository;
 import ec.com.sofka.usecases.accounts.UpdateAccountUseCase;
@@ -26,12 +29,12 @@ public class CreateMovementUseCase {
     public Movement execute(Movement movement) {
         Account accountUpdate = accountRepository.findAccountById(movement.getIdAccount());
         if (accountUpdate == null) {
-            throw new RuntimeException("The account does not exist");
+            throw new AccountNotFound("The account does not exist");
         }
 
         BigDecimal newBalance = accountUpdate.getOpeningBalance().add(movement.getAmount());
         if (newBalance.compareTo(BigDecimal.ZERO) < 0) {
-            throw new RuntimeException("Balance not  available");
+            throw new InsufficientBalanceException("Balance not  available");
         }
 
         movement.setDate(LocalDateTime.now());
@@ -42,7 +45,7 @@ public class CreateMovementUseCase {
 
         Movement movementNew = this.movementRepository.saveMovement(movement);
         if (movementNew == null) {
-            throw new RuntimeException("Error creating movement");
+            throw new MovementException("Error creating movement");
         }
 
         accountUpdate.setOpeningBalance(newBalance);

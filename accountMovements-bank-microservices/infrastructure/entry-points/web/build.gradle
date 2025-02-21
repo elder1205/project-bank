@@ -2,6 +2,7 @@ dependencies {
     implementation project(":usecases")
     implementation project(":model")
     implementation project(":mysql-repository")
+    implementation project(":app-exception")
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-validation'
 }

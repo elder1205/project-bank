@@ -2,6 +2,8 @@ package ec.com.sofka.usecases.accounts;
 
 import ec.com.sofka.Account;
 import ec.com.sofka.data.CustomerInfoRequestRecord;
+import ec.com.sofka.exceptions.CustomerNotFound;
+import ec.com.sofka.exceptions.NumberAccountNotFoundException;
 import ec.com.sofka.gateway.AccountRepository;
 import ec.com.sofka.gateway.IBusMessage;
 
@@ -22,11 +24,11 @@ public class CreateAccountUseCase {
             customerId = (String) response;
 
             if (customerId == null || customerId.isEmpty()) {
-                throw new RuntimeException("Error creating account: Customer not Found");
+                throw new CustomerNotFound("Error creating account: Customer not Found");
             }
             account.setIdClient(customerId);
             return accountRepository.saveAccount(account);
         }
-        throw new RuntimeException("Number account already exists");
+        throw new NumberAccountNotFoundException("Number account already exists");
     }
 }

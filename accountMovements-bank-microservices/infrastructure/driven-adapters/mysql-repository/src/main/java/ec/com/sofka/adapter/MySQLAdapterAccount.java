@@ -2,6 +2,7 @@ package ec.com.sofka.adapter;
 
 import ec.com.sofka.Account;
 import ec.com.sofka.entities.AccountEntity;
+import ec.com.sofka.exceptions.AccountNotFound;
 import ec.com.sofka.gateway.AccountRepository;
 import ec.com.sofka.mappers.AccountMapper;
 import ec.com.sofka.repository.IAccountRepository;
@@ -42,7 +43,7 @@ public class MySQLAdapterAccount implements AccountRepository {
     public Account findAccountById(String id) {
         AccountEntity accountEntity = accountRepository.findById(id).orElse(null);
         if (accountEntity == null) {
-            throw new RuntimeException("Account not found");
+            throw new AccountNotFound("Account not found");
         }
         return AccountMapper.toModel(accountEntity);
     }
@@ -61,7 +62,7 @@ public class MySQLAdapterAccount implements AccountRepository {
     public Account findByIdClient(String idClient) {
         AccountEntity accountEntity = accountRepository.findByIdClient(idClient);
         if (accountEntity == null) {
-            throw new RuntimeException("Account not found");
+            throw new AccountNotFound("Account not found");
         }
         return AccountMapper.toModel(accountEntity);
     }

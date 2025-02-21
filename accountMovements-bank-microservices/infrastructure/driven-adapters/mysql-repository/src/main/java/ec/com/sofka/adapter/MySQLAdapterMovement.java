@@ -3,6 +3,7 @@ package ec.com.sofka.adapter;
 import ec.com.sofka.Account;
 import ec.com.sofka.Movement;
 import ec.com.sofka.entities.MovementEntity;
+import ec.com.sofka.exceptions.MovementNotFoundException;
 import ec.com.sofka.gateway.MovementRepository;
 
 import ec.com.sofka.mappers.MovementMapper;
@@ -43,7 +44,7 @@ public class MySQLAdapterMovement implements MovementRepository {
     public Movement findMovementById(String id) {
         MovementEntity movementEntity = movementRepository.findById(id).orElse(null);
         if (movementEntity == null) {
-            throw new RuntimeException("Movement not found");
+            throw new MovementNotFoundException("Movement not found");
         }
 
         return MovementMapper.toModel(movementEntity);
