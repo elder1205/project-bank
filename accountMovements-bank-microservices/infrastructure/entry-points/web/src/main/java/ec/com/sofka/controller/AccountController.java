@@ -5,6 +5,7 @@ import ec.com.sofka.dto.account.AccountRequestDTO;
 import ec.com.sofka.dto.account.AccountResponseDTO;
 import ec.com.sofka.handler.AccountHandler;
 import jakarta.validation.Valid;
+import org.apache.coyote.Response;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,6 +33,13 @@ public class AccountController {
         var response = accountHandler.save(accountRequestDTO);
         return response != null?
                 ResponseEntity.status(201).body(response):
+                ResponseEntity.status(500).build();
+    }
+    @PutMapping
+    public ResponseEntity<AccountResponseDTO> updateAccount(@RequestBody @Valid AccountRequestDTO accountRequestDTO){
+        var response = accountHandler.update(accountRequestDTO);
+        return response != null?
+                ResponseEntity.status(200).body(response):
                 ResponseEntity.status(500).build();
     }
 @GetMapping("/{id}")

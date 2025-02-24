@@ -49,7 +49,7 @@ public class CreateMovementUseCase {
         }
 
         accountUpdate.setOpeningBalance(newBalance);
-        updateAccountUseCase.execute(accountUpdate);
+        updateAccountUseCase.execute(accountUpdate, false);
 
         return movementNew;
     }

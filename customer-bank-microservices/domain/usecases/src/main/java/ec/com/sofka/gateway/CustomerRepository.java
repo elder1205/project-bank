@@ -11,7 +11,7 @@ public interface CustomerRepository {
 
     List<Customer> listCustomer();
 
-    Customer findAccountById(String id);
+    Customer findCustomerById(String id);
 
     Void deleteCustomer(String id);
 

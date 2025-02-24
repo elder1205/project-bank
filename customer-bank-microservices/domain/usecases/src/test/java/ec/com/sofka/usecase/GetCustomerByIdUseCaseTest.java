@@ -35,24 +35,24 @@ public class GetCustomerByIdUseCaseTest {
     @Test
     @DisplayName("Should return customer, when customer exists")
     void execute_whenCustomerExists_shouldReturnCustomer() {
-        when(customerRepository.findAccountById("1")).thenReturn(customer);
+        when(customerRepository.findCustomerById("1")).thenReturn(customer);
 
         Customer result = getCustomerByIdUseCase.execute("1");
 
         assertEquals(customer, result);
-        verify(customerRepository, times(1)).findAccountById("1");
+        verify(customerRepository, times(1)).findCustomerById("1");
     }
 
     @Test
     @DisplayName("Should throw RuntimeException, when customer does not exist")
     void execute_whenCustomerDoesNotExist_shouldThrowRuntimeException() {
-        when(customerRepository.findAccountById("1")).thenReturn(null);
+        when(customerRepository.findCustomerById("1")).thenReturn(null);
 
         RuntimeException exception = assertThrows(RuntimeException.class, () -> {
             getCustomerByIdUseCase.execute("1");
         });
 
         assertEquals("There is no customer with id: 1", exception.getMessage());
-        verify(customerRepository, times(1)).findAccountById("1");
+        verify(customerRepository, times(1)).findCustomerById("1");
     }
 }

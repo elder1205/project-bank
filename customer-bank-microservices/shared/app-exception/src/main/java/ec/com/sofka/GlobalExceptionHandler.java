@@ -1,9 +1,6 @@
 package ec.com.sofka;
 
-import ec.com.sofka.exceptions.AccountNotFound;
-import ec.com.sofka.exceptions.CustomerNotFound;
-import ec.com.sofka.exceptions.IdentificationException;
-import ec.com.sofka.exceptions.InsufficientBalanceException;
+import ec.com.sofka.exceptions.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -29,6 +26,13 @@ public class GlobalExceptionHandler {
         Map<String,String> error = new HashMap<>();
         error.put("error",ex.getMessage());
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
+    }
+
+    @ExceptionHandler(CustomerException.class)
+    public ResponseEntity<Map<String,String>> handleCustomer(CustomerException ex) {
+        Map<String,String> error = new HashMap<>();
+        error.put("error",ex.getMessage());
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
     }
 
     @ExceptionHandler(InsufficientBalanceException.class)

@@ -32,6 +32,12 @@ public class MySQLAdapterMovement implements MovementRepository {
     }
 
     @Override
+    public Movement updateMovement(Movement movement) {
+        MovementEntity movementEntity = movementRepository.save(MovementMapper.toEntity(movement));
+        return MovementMapper.toModel(movementEntity);
+    }
+
+    @Override
     public List<Movement> listMovements() {
         List<MovementEntity> movementsList = movementRepository.findAll();
         return movementsList

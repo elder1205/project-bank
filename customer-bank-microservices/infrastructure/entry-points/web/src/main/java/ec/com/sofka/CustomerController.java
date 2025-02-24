@@ -25,6 +25,13 @@ public class CustomerController {
                 ResponseEntity.status(201).body(response) :
                 ResponseEntity.status(500).build();
     }
+    @PutMapping
+    public ResponseEntity<CustomerResponseDTO> updateCustomer(@RequestBody @Valid CustomerRequestDTO customerRequestDTO){
+        var response = customerHandler.update(customerRequestDTO);
+        return response != null ?
+                ResponseEntity.status(200).body(response) :
+                ResponseEntity.status(500).build();
+    }
 
     @GetMapping
     public ResponseEntity<List<CustomerResponseDTO>> getAllCustomers() {

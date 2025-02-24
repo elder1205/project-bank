@@ -9,7 +9,8 @@ import java.util.List;
 public interface MovementRepository {
     Movement saveMovement(Movement movement);
 
-    //  Movement updateMovement(Movement movement);
+    Movement updateMovement(Movement movement);
+
     List<Movement> listMovements();
 
     Movement findMovementById(String id);

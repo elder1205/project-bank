@@ -12,7 +12,7 @@ public class GetCustomerByIdUseCase {
     }
 
     public Customer execute(String id) {
-        Customer customer = customerRepository.findAccountById(id);
+        Customer customer = customerRepository.findCustomerById(id);
         if (customer == null) {
             throw new CustomerNotFound("There is no customer with id: " + id);
         }

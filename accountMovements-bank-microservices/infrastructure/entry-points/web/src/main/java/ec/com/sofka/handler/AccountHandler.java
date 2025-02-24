@@ -5,10 +5,7 @@ import ec.com.sofka.dto.AccountStatementResponseDTO;
 import ec.com.sofka.dto.account.AccountRequestDTO;
 import ec.com.sofka.dto.account.AccountResponseDTO;
 import ec.com.sofka.mapper.AccountMapper;
-import ec.com.sofka.usecases.accounts.CreateAccountUseCase;
-import ec.com.sofka.usecases.accounts.GetAccountByIdUseCase;
-import ec.com.sofka.usecases.accounts.GetAccountStatementUseCase;
-import ec.com.sofka.usecases.accounts.GetAllAccountsUseCase;
+import ec.com.sofka.usecases.accounts.*;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -19,12 +16,14 @@ public class AccountHandler {
     private final GetAllAccountsUseCase getAllAccountsUseCase;
     private final GetAccountByIdUseCase getAccountByIdUseCase;
     private final CreateAccountUseCase createAccountUseCase;
+    private final UpdateAccountUseCase updateAccountUseCase;
     private final GetAccountStatementUseCase getAccountStatementUseCase;
 
-    public AccountHandler(GetAllAccountsUseCase getAllAccountsUseCase, GetAccountByIdUseCase getAccountByIdUseCase, CreateAccountUseCase createAccountUseCase, GetAccountStatementUseCase getAccountStatementUseCase) {
+    public AccountHandler(GetAllAccountsUseCase getAllAccountsUseCase, GetAccountByIdUseCase getAccountByIdUseCase, CreateAccountUseCase createAccountUseCase, UpdateAccountUseCase updateAccountUseCase, GetAccountStatementUseCase getAccountStatementUseCase) {
         this.getAllAccountsUseCase = getAllAccountsUseCase;
         this.getAccountByIdUseCase = getAccountByIdUseCase;
         this.createAccountUseCase = createAccountUseCase;
+        this.updateAccountUseCase = updateAccountUseCase;
         this.getAccountStatementUseCase = getAccountStatementUseCase;
     }
 
@@ -42,6 +41,11 @@ public class AccountHandler {
     public AccountResponseDTO save(AccountRequestDTO accountRequestDTO) {
         Account account = AccountMapper.toModel(accountRequestDTO);
         return AccountMapper.toResponseDTO(createAccountUseCase.execute(account, account.getIdClient()));
+    }
+
+    public AccountResponseDTO update(AccountRequestDTO accountRequestDTO){
+        Account account = AccountMapper.toModel(accountRequestDTO);
+        return AccountMapper.toResponseDTO(updateAccountUseCase.execute(account,true));
     }
 
     public List<AccountStatementResponseDTO> getAccountStatements(String dateRange, String customerIdentification) {

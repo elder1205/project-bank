@@ -39,7 +39,7 @@ public class MySQLAdapterCustomer implements CustomerRepository {
     }
 
     @Override
-    public Customer findAccountById(String id) {
+    public Customer findCustomerById(String id) {
         CustomerEntity customerEntity = repository.findById(id).orElse(null);
         if (customerEntity == null) {
             throw new RuntimeException("Customer with id : " + id + " not found");
